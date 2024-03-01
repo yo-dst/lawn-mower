@@ -20,8 +20,19 @@ try {
 // split input_file data into lines to ease the parsing
 const lines = data.split("\n");
 
+// prevent segfault
+if (lines.length === 0) {
+	console.error("Error: invalid input file");
+	return;
+}
+
 // get lawn dimensions
 const lawnDim = lines[0].split(" ");
+// ensure lawn dimensions line is valid
+if (lawnDim.length !== 2) {
+	console.error("Error: invalid input file");
+	return;
+}
 const xMax = parseInt(lawnDim[0]);
 const yMax = parseInt(lawnDim[1]);
 
@@ -61,6 +72,11 @@ let i = 1;
 while (i < lines.length) {
 	// get mower infos
 	const mowerInfos = lines[i].split(" ");
+	// ensure lawn dimensions line is valid
+	if (mowerInfos.length !== 3) {
+		console.error("Error: invalid input file");
+		return;
+	}
 	const mower = {
 		x: parseInt(mowerInfos[0]),
 		y: parseInt(mowerInfos[1]),
@@ -100,7 +116,7 @@ while (i < lines.length) {
 	}
 
 	// save mower final position
-	res.push(`${mower.x} ${mower.y} ${mower.dir}`);
+	mowers.push(`${mower.x} ${mower.y} ${mower.dir}`);
 
 	// go to next mower
 	i += 2;
