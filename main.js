@@ -72,7 +72,7 @@ let i = 1;
 while (i < lines.length) {
 	// get mower infos
 	const mowerInfos = lines[i].split(" ");
-	// ensure lawn dimensions line is valid
+	// ensure mower infos line is valid
 	if (mowerInfos.length !== 3) {
 		console.error("Error: invalid input file");
 		return;
